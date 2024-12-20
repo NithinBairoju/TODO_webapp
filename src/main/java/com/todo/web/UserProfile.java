@@ -23,6 +23,9 @@ public class UserProfile extends HttpServlet {
     }
     public void doPost(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
+        if (action == null){
+            action = "";
+        }
         HttpSession session = request.getSession();
         String userEmail = (String) session.getAttribute("userEmail");
         User user = (User) session.getAttribute("user");
@@ -96,6 +99,9 @@ public class UserProfile extends HttpServlet {
                     request.getRequestDispatcher("UserAccount.jsp").forward(request,response);
                 }
                 break;
+            default:
+                request.setAttribute("errorMessage","Something went wrong!");
+                request.getRequestDispatcher("UserAccount.jsp").forward(request,response);
         }
     }
 }
