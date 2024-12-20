@@ -14,6 +14,7 @@ public class UserDAO {
     private String updatePassword = "update users set user_password = ? where id = ?;";
     private String deleteUser = "delete from users where id = ?;";
     private String selectUser = "select id from users where email = ?;";
+    private String checkUser = "select id from users where email = ?;";
 
 
 
@@ -57,6 +58,14 @@ public class UserDAO {
     }
     //update user mail
     public boolean updateMail(String userMail,int userID,User user) {
+        try {
+            if (!checkMail(userMail)) {
+                return false;
+            }
+        } catch (SQLServerException e) {
+            throw new SQLServerException("Error while updating mail of: " + (user.getUserName() != null ? user.getUserName() : "user")
+            );
+        }
         try(Connection connection = con.getConnection();
             PreparedStatement statement = connection.prepareStatement(updateMail);){
             statement.setString(1,userMail);
@@ -110,5 +119,20 @@ public class UserDAO {
 
         }
         return -1;
+    }
+    //selecting an user
+    public boolean checkMail(String email) {
+        try(Connection connection = con.getConnection();
+            PreparedStatement statement = connection.prepareStatement(checkUser);){
+            statement.setString(1,email);
+            ResultSet result = statement.executeQuery();
+            if (result.next()){
+                return true;
+            }
+        }catch (SQLException | ClassNotFoundException e){
+            throw new SQLServerException("Error retrieving id with " + email);
+
+        }
+        return false;
     }
 }
