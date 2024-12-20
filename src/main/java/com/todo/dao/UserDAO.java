@@ -58,24 +58,26 @@ public class UserDAO {
     }
     //update user mail
     public boolean updateMail(String userMail,int userID,User user) {
-        try {
-            if (!checkMail(userMail)) {
-                return false;
+//        if (!checkMail(userMail)) {
+//            return false;
+//        }else {
+            try (Connection connection = con.getConnection();
+                 PreparedStatement statement = connection.prepareStatement(updateMail);) {
+                statement.setString(1, userMail);
+                statement.setInt(2, userID);
+                int rowsUpdated = statement.executeUpdate();
+                return rowsUpdated > 0;
+            } catch (SQLException e) {
+                if (e.getSQLState().startsWith("23")) {
+                    throw new SQLServerException("User already exists with email: ");
+                }
+                throw new SQLServerException("Error while updating mail of: " + (user.getUserName() != null ? user.getUserName() : "user")
+                );
+            } catch (ClassNotFoundException e) {
+                throw new SQLServerException("Error while updating mail of: " + (user.getUserName() != null ? user.getUserName() : "user")
+                );
             }
-        } catch (SQLServerException e) {
-            throw new SQLServerException("Error while updating mail of: " + (user.getUserName() != null ? user.getUserName() : "user")
-            );
-        }
-        try(Connection connection = con.getConnection();
-            PreparedStatement statement = connection.prepareStatement(updateMail);){
-            statement.setString(1,userMail);
-            statement.setInt(2,userID);
-            int rowsUpdated = statement.executeUpdate();
-            return rowsUpdated > 0;
-        }catch (SQLException | ClassNotFoundException e) {
-            throw new SQLServerException("Error while updating mail of: " + (user.getUserName() != null ? user.getUserName() : "user")
-            );
-        }
+//        }
     }
     //update password of an account
     public boolean updatePassword(String userPassword,int userID,User user) {

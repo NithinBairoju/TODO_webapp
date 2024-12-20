@@ -52,15 +52,19 @@ public class UserProfile extends HttpServlet {
             case "updateMail":
 
                  String userMail = (String) request.getParameter("userMail");
-                 isUpdated = userDao.updateMail(userMail,userID,user);
-                if (isUpdated){
-                    session.setAttribute("userEmail",userMail);
-                    request.setAttribute("successMessage","Email updated successfully!");
-                    request.getRequestDispatcher("UserAccount.jsp").forward(request,response);
-                }else
-                {
-                    request.setAttribute("errorMessage","Failed update Email!");
-                    request.getRequestDispatcher("UserAccount.jsp").forward(request,response);
+                try {
+                    boolean isUpdatedEmail = userDao.updateMail(userMail, userID, user);
+                    if (isUpdatedEmail) {
+                        session.setAttribute("userEmail", userMail);
+                        request.setAttribute("successMessage", "Email updated successfully!");
+                        request.getRequestDispatcher("UserAccount.jsp").forward(request, response);
+                    } else {
+                        request.setAttribute("errorMessage", "Failed update Email!");
+                        request.getRequestDispatcher("UserAccount.jsp").forward(request, response);
+                    }
+                } catch (SQLServerException e) {
+                    request.setAttribute("errorMessage", e.getMessage());
+                    request.getRequestDispatcher("UserAccount.jsp").forward(request, response);
                 }
                 break;
             case "updatePassword":

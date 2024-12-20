@@ -88,7 +88,7 @@
                                                     <div class="col-md-12 d-flex justify-content-between align-items-center">
                                                         <input type="text" class="form-control me-3" name="userName"
                                                             placeholder="enter new user name" required>
-                                                        <input type="submit" class="btn btn-dark" value="Save Profile">
+                                                        <input type="submit" class="btn btn-dark" value="Save Name">
                                                     </div>
                                                 </form>
                                             </div>
@@ -99,7 +99,7 @@
                                                     <div class="col-md-12 d-flex justify-content-between align-items-center">
                                                         <input type="email" class="form-control me-3" name="userMail"
                                                             placeholder="enter new email" required>
-                                                        <input type="submit" class="btn btn-dark" value="Save Profile">
+                                                        <input type="submit" class="btn btn-dark" value="Save Email">
 
                                                     </div>
                                                 </form>
@@ -111,7 +111,7 @@
                                                     <div class="col-md-12 d-flex justify-content-between align-items-center">
                                                         <input type="password" class="form-control me-3" name="userPassword"
                                                             placeholder="enter new Password" required>
-                                                        <input type="submit" class="btn btn-dark" value="Save Profile">
+                                                        <input type="submit" class="btn btn-dark" value="Save Password">
 
                                                     </div>
                                                 </form>
