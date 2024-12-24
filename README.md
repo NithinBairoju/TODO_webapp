@@ -1,10 +1,10 @@
-Dynamic To-Do Management System
+###Dynamic To-Do Management System
 
 A dynamic web-based to-do management application built using JSP and Servlets. 
 This application provides real-time task management with features such as adding, updating, and deleting tasks seamlessly. 
 The application ensures user authentication and intuitive usability with a responsive interface.
 
-Technologies Used
+##Technologies Used
 
 Java: Core language for back-end logic and servlet-based processing.
 
@@ -20,7 +20,7 @@ AJAX: To enable real-time updates and enhance user experience.
 
 Apache Tomcat 11: As the application server.
 
-Features
+##Features
 
 User Authentication: Secure login system to protect task data.
 
@@ -30,9 +30,9 @@ Dynamic Interface: Responsive and user-friendly design using Bootstrap.
 
 Error Handling: Ensures smooth operation with detailed error pages.
 
-How to Set Up and Run the Application
+##How to Set Up and Run the Application
 
-Prerequisites
+#Prerequisites
 
 Install Java JDK (Version 8 or later).
 
@@ -44,11 +44,12 @@ Use an IDE like IntelliJ IDEA, Eclipse, or NetBeans.
 
 Install a browser for testing (e.g., Chrome, Firefox).
 
-Steps to Execute
+#Steps to Execute
 
 Clone the Repository:
 
-git clone https://github.com/NithinBairoju/TODO_webapp.git
+git clone
+`https://github.com/NithinBairoju/TODO_webapp.git`
 
 Navigate to the project directory.
 
